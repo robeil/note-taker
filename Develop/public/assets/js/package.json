@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/Robeil/note-taker/issues"
   },
-  "homepage": "https://github.com/Robeil/note-taker#readme"
+  "homepage": "https://github.com/Robeil/note-taker#readme",
+  "dependencies": {
+    "db": "^3.1.0",
+    "nodemon": "^2.0.4"
+  }
 }
