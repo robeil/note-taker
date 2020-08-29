@@ -1,0 +1,19 @@
+{
+  "name": "note-taker",
+  "version": "1.0.0",
+  "description": "note-taker-app",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Robeil/note-taker.git"
+  },
+  "author": "Robeil Aregawi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Robeil/note-taker/issues"
+  },
+  "homepage": "https://github.com/Robeil/note-taker#readme"
+}
