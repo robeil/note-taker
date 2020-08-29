@@ -32,7 +32,7 @@ const deleteNote = (id) => {
   });
 };
 
-//
+// The html route should be here
 
 
 
