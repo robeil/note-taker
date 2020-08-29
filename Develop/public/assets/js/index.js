@@ -32,10 +32,6 @@ const deleteNote = (id) => {
   });
 };
 
-// The html route should be here
-
-
-
 // If there is an activeNote, display it, otherwise render empty inputs
 const renderActiveNote = () => {
   $saveNoteBtn.hide();
