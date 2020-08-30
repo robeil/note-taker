@@ -1,15 +1,14 @@
 {
   "name": "note-taker",
   "version": "1.0.0",
-  "description": "",
+  "description": "This created to remmeber things you want to do in your daily life",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
-
   },
-  "author": "",
+  "author": "Robeil Aregawi",
   "license": "ISC",
   "dependencies": {
     "concurrently": "^5.3.0",
@@ -19,5 +18,13 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Robeil/note-taker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Robeil/note-taker/issues"
+  },
+  "homepage": "https://github.com/Robeil/note-taker#readme"
 }
