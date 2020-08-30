@@ -1,19 +1,5 @@
 {
     "liveServer.settings.port": 5501,
-    "sqltools.connections": [
-        {
-            "askForPassword": true,
-            "database": "test_db",
-            "driver": "MySQL",
-            "group": "test",
-            "mysqlOptions": {
-                "authProtocol": "default"
-            },
-            "name": "second-server.",
-            "port": 3306,
-            "previewLimit": 50,
-            "server": "localhost",
-            "username": "Robeil"
-        }
-    ]
+    "sqltools.connections": [],
+    "git.ignoreLimitWarning": true
 }
