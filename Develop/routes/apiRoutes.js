@@ -1,41 +1,29 @@
-// creating aoiroutes
-const fs = require('fs');
-const db = require('../db/db.json');
+//npm uuid module used 
+const fs = require("fs");
+const db = require("../db/db.json");
 const { v4: uuidv4 } = require('uuid');
-var path = require('path');
-const bodyParser = require('body-parser');
 
+module.exports = (app) => {
 
+    app.get("/api/notes", (req, res) => {
+        res.json(db);
+    })
 
-module.exports = function (app) {
+    app.post("/api/notes", (req, res) => {
 
-    //app.use(bodyParser.urlencoded({extended: true}));
+        const notePayload = req.body;
 
-    app.get('/api/notes', function(req, res) {
-        console.log("----", db)
-        res.send(db);
-        console.log("db is listeing")  // ???
-      });
-
-      app.post('/api/notes', function(req, res){
-
-        const note = req.body;
- 
-       //console.log("post is listenning") // ???
-
-       /* const givenKey = [{
-     // need to make a change for this key in the json file npm init
-            key: 'keen', // 'title'
-            // type: 'string'
-        }, 'text']
+        const acceptedKeys = [{
+            key: "title",
+        }, "text"]
 
         for (const {
             key,
             type
-        } of givenKey) {
+        } of acceptedKeys) {
+            
+            if (notePayload[key] === null) {
 
-            if (note[key] === null) {
-                // || typeof notePayload[key] !== type
                 res.status(400).json({
                     error: `Please provide a ${key} create a note.`
                 })
@@ -43,39 +31,48 @@ module.exports = function (app) {
                 return;
             }
         }
-*/
         const {
             title,
             text
-        } = note
+        } = notePayload
 
         const newNote = {
-            id: uuidv4(), 
-            title,
-            text
+            "id": uuidv4(),
+            "title": title,
+            "text": text
         }
-        db.push(newNote)
+        db.push(newNote);
 
-        // TODO - USE FS TO WRITE NEW DB ARRAY INTO 'db.json'
-        fs.writeFile('./db/db.json', JSON.stringify(db), 'utf8', function(err, data){
+        fs.writeFile("./db/db.json", JSON.stringify(db), "utf8", (err, data) => {
+
             if (err) throw err;
-            res.send("done");
+            res.status(200).send("new note added");
+            res.json(data);
         })
-
-
     })
 
+    app.delete(`/api/notes/:id`, (req, res) => {
+
+        const userId = req.params.id;
+
+        for (i=0; i<db.length; i++) {
+
+            if (db[i].id === userId) {
+
+                 db.splice(i, 1);
+                 break;
+            } 
+        }
+        fs.writeFile("./db/db.json", JSON.stringify(db), "utf8", (err, data) => {
+
+            if (err) throw err;
+            res.status(200).send("new note deleted.");
+            res.json(data);
+        })
+    })
 
 };
 
 
-/*
-    app.get('/notes', function(req, res) {
-        res.sendFile(path.join(__dirname, '../public/notes.html'));
-      });
-    
-      app.get('*', function(req, res) {
-        res.sendFile(path.join(__dirname, '../public/index.html'));
-    });
 
-*/
+
