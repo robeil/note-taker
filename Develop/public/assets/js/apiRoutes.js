@@ -2,14 +2,14 @@
 const fs = require('fs');
 const db = require('db');
 const { v4: uuidv4 } = require('uuid');
-const path = require('path');
+var path = require('path');
 const bodyParser = require('body-parser');
 
 
 
 module.exports = function (app) {
 
-    app.use(bodyParser.urlencoded({extended: true}));
+    //app.use(bodyParser.urlencoded({extended: true}));
 
     app.get('/api/notes', function(req, res) {
 
@@ -21,7 +21,7 @@ module.exports = function (app) {
 
         const note = req.body;
  
-        console.log("post is listenning") // ???
+       //console.log("post is listenning") // ???
 
         const givenKey = [{
 // need to make a change for this key in the json file by running npm init
