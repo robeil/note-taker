@@ -2,22 +2,30 @@
 const fs = require('fs');
 const db = require('db');
 const { v4: uuidv4 } = require('uuid');
-var path = require('path');
+const path = require('path');
+const bodyParser = require('body-parser');
+
+
 
 module.exports = function (app) {
+
+    app.use(bodyParser.urlencoded({extended: true}));
 
     app.get('/api/notes', function(req, res) {
 
         res.send(db);
+        console.log("db is listeing")  // ???
       });
 
       app.post('/api/notes', function(req, res){
 
         const note = req.body;
+ 
+        console.log("post is listenning") // ???
 
         const givenKey = [{
-
-            key: 'title',
+// need to make a change for this key in the json file by running npm init
+            key: 'keen', // 'title'
             // type: 'string'
         }, 'text']
 
@@ -56,6 +64,10 @@ module.exports = function (app) {
 
     })
 
+
+};
+
+
 /*
     app.get('/notes', function(req, res) {
         res.sendFile(path.join(__dirname, '../public/notes.html'));
@@ -66,4 +78,3 @@ module.exports = function (app) {
     });
 
 */
-};
