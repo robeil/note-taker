@@ -1,6 +1,6 @@
 // creating aoiroutes
 const fs = require('fs');
-const db = require('db');
+const db = require('../db/db.json');
 const { v4: uuidv4 } = require('uuid');
 var path = require('path');
 const bodyParser = require('body-parser');
@@ -12,7 +12,7 @@ module.exports = function (app) {
     //app.use(bodyParser.urlencoded({extended: true}));
 
     app.get('/api/notes', function(req, res) {
-
+        console.log("----", db)
         res.send(db);
         console.log("db is listeing")  // ???
       });
@@ -23,8 +23,8 @@ module.exports = function (app) {
  
        //console.log("post is listenning") // ???
 
-        const givenKey = [{
-// need to make a change for this key in the json file by running npm init
+       /* const givenKey = [{
+     // need to make a change for this key in the json file npm init
             key: 'keen', // 'title'
             // type: 'string'
         }, 'text']
@@ -43,7 +43,7 @@ module.exports = function (app) {
                 return;
             }
         }
-
+*/
         const {
             title,
             text
@@ -54,11 +54,12 @@ module.exports = function (app) {
             title,
             text
         }
+        db.push(newNote)
 
         // TODO - USE FS TO WRITE NEW DB ARRAY INTO 'db.json'
-        fs.appendFile('db.json', newNote, 'utf8', function(err, data){
+        fs.writeFile('./db/db.json', JSON.stringify(db), 'utf8', function(err, data){
             if (err) throw err;
-            res.send(JSON.parse(data));
+            res.send("done");
         })
 
 
