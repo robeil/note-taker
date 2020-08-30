@@ -2,7 +2,7 @@
 const fs = require('fs');
 const db = require('db');
 const { v4: uuidv4 } = require('uuid');
-var path = require("path");
+var path = require('path');
 
 module.exports = function (app) {
 
@@ -16,14 +16,16 @@ module.exports = function (app) {
         const note = req.body;
 
         const givenKey = [{
-            key: "title",
-            // type: "string"
-        }, "text"]
+
+            key: 'title',
+            // type: 'string'
+        }, 'text']
 
         for (const {
             key,
             type
         } of givenKey) {
+
             if (note[key] === null) {
                 // || typeof notePayload[key] !== type
                 res.status(400).json({
@@ -33,6 +35,7 @@ module.exports = function (app) {
                 return;
             }
         }
+
         const {
             title,
             text
@@ -45,7 +48,7 @@ module.exports = function (app) {
         }
 
         // TODO - USE FS TO WRITE NEW DB ARRAY INTO 'db.json'
-        fs.appendFile("db.json", newNote, "utf8", function(err, data){
+        fs.appendFile('db.json', newNote, 'utf8', function(err, data){
             if (err) throw err;
             res.send(JSON.parse(data));
         })
@@ -53,15 +56,14 @@ module.exports = function (app) {
 
     })
 
-
-    app.get("/notes", function(req, res) {
-        res.sendFile(path.join(__dirname, "../public/notes.html"));
+/*
+    app.get('/notes', function(req, res) {
+        res.sendFile(path.join(__dirname, '../public/notes.html'));
       });
     
-      app.get("*", function(req, res) {
-        res.sendFile(path.join(__dirname, "../public/index.html"));
+      app.get('*', function(req, res) {
+        res.sendFile(path.join(__dirname, '../public/index.html'));
     });
-      
 
-
+*/
 };
