@@ -3,8 +3,8 @@ const express = require('express');
 const fs = require('fs');
 const apiRoutes = require('./routes/apiRoutes');
 const htmlroutes = require('./routes/htmlroutes');
-//const bodyParser = require('body-parser');
 
+//const bodyParser = require('body-parser');
 //const router = express.Router();
 
 const app = express();
@@ -14,8 +14,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
-//app.use('/', apiRoutes, htmlroutes); // ????///////////
-
+//app.use('/', apiRoutes, htmlroutes); // 
+// adding to heroku later
 
 require('./routes/apiRoutes')(app);
 require('./routes/htmlroutes')(app);
