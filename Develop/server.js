@@ -1,8 +1,8 @@
 // creating the server here
 const express = require('express');
 const fs = require('fs');
-const apiRoutes = require('./Develop/routes/apiRoutes');
-const htmlroutes = require('./Develop/routes/htmlroutes');
+const apiRoutes = require('./routes/apiRoutes');
+const htmlroutes = require('./routes/htmlroutes');
 
 //const bodyParser = require('body-parser');
 //const router = express.Router();
@@ -18,10 +18,11 @@ app.use(express.static("public"));
 //app.use('/', apiRoutes, htmlroutes); // 
 // adding to heroku later
 
-require('./Develop/routes/apiRoutes')(app);
-require('./Develop/routes/htmlroutes')(app);
+require('./routes/apiRoutes')(app);
+require('./routes/htmlroutes')(app);
 
 app.listen(PORT, () => {
     console.log(`App listening at PORT:${PORT}`);
   });
   
+// 
